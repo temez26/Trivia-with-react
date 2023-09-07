@@ -17,7 +17,7 @@ function App() {
       setAnswer('');
       setCorrectAnswer(correctAnswer);
       setShowCorrectAnswer(false);
-      setCongratulations(''); // Clear congratulations message
+      setCongratulations('');
     } catch (error) {
       console.error('Error fetching question:', error);
     }
@@ -41,7 +41,8 @@ function App() {
     <div className="App">
       <h1>Random Trivia Question</h1>
       <div className="question">
-        <p>{question}</p>
+        {/* Use dangerouslySetInnerHTML to parse HTML entities */}
+        <p dangerouslySetInnerHTML={{ __html: question }}></p>
       </div>
       <div className="answer">
         <input

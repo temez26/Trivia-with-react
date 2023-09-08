@@ -24,3 +24,8 @@ Welcome to the Random Trivia Game! This simple web application fetches random tr
   -Npm run dev  
  
 ## Enjoy playing the Random Trivia Game!
+
+[Link to My Website](https://triv.azurewebsites.net/)
+
+
+

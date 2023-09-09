@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
+import { faDiamond } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from 'react';
 
 function App() {
@@ -70,7 +72,7 @@ function App() {
           value={answer}
           onChange={handleAnswerChange}
         />
-        <button onClick={checkAnswer}>Check Answer</button>
+        <button onClick={checkAnswer}> <FontAwesomeIcon icon={faDiamond}  className="dice" />Check Answer <FontAwesomeIcon icon={faDiamond}  className="dice" /></button>
       </div>
       {showCorrectAnswer && (
         <div className="correct-answer">
@@ -83,7 +85,10 @@ function App() {
       <p>Correct: {correctCount}</p>
       <p>Incorrect: {incorrectCount}</p>
       <p>Percentage: {percentage.toFixed(2)}%</p>
-      <button onClick={fetchRandomQuestion}>Get Random Question</button>
+      
+      
+      <button onClick={fetchRandomQuestion}> <FontAwesomeIcon icon={faDiceSix}  className="dice" beat/>Get Random Question</button>
+      
       <div className="icon">
         <FontAwesomeIcon icon={faCoffee} />
       </div>

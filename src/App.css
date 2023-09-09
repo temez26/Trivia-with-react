@@ -31,7 +31,7 @@
       padding: 10px;
     }
     .App {
-      min-height:70vh;
+      min-height:79vh;
     }
   }
   
@@ -41,6 +41,12 @@
     padding:15px;
   
     border-radius: 5%;
+    
+  }
+  .dice {
+    color:rgb(252, 189, 54);
+    font-size:20px;
+    padding-right:5px;
     
   }
   

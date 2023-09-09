@@ -27,5 +27,8 @@ Welcome to the Random Trivia Game! This simple web application fetches random tr
 
 [Link to My Website](https://triv.azurewebsites.net/)
 
+### Bugs
+-When pressing check answer button before asking any question the game gives points for correct answers.
+
 
 

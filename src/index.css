@@ -16,18 +16,29 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  
+  text-decoration: none;
+}
+.navbar-brand {
+  background-color: #000000;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ff0000' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+padding-left:5%;
+padding-right:5%;
+border-radius:5%;
 }
 a:hover {
   color: #535bf2;
 }
 
-
-
 h1 {
-  font-size: 3.2em;
+  font-size: 30px;
   line-height: 1.1;
+  color: #fff; /* Change header text color to white */
+  font-style: oblique;
+  background-color:rgb(81, 113, 201);
+  border-radius:1%;
+  padding:2%;
+  
 }
 
 button {
@@ -38,11 +49,14 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: #fff; /* Change button text color to white */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
+  margin-top: 10px; 
 }
 button:hover {
   border-color: #646cff;
+  background-color: #333; /* Change button background color on hover */
 }
 button:focus,
 button:focus-visible {
@@ -59,5 +73,6 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+    color: #333; /* Change button text color in light mode */
   }
 }

@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from 'react';
 
 function App() {
@@ -6,6 +8,8 @@ function App() {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [congratulations, setCongratulations] = useState('');
+  const [correctCount, setCorrectCount] = useState(0); // Track correct answers
+  const [incorrectCount, setIncorrectCount] = useState(0); // Track incorrect answers
 
   const fetchRandomQuestion = async () => {
     try {
@@ -31,19 +35,34 @@ function App() {
     if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
       setCongratulations('Congratulations, correct answer!');
       setShowCorrectAnswer(false);
+      setCorrectCount(correctCount + 1); // Increment correct count
     } else {
       setShowCorrectAnswer(true);
       setCongratulations('');
+      setIncorrectCount(incorrectCount + 1); // Increment incorrect count
     }
   };
 
+  // Calculate the percentage of correct answers
+  const totalQuestions = correctCount + incorrectCount;
+  const percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
+
+  
+
   return (
+
+    
+      
     <div className="App">
+    <div className="container1">
+    <div className="container2">
+    
       <h1>Random Trivia Question</h1>
       <div className="question">
         {/* Use dangerouslySetInnerHTML to parse HTML entities */}
         <p dangerouslySetInnerHTML={{ __html: question }}></p>
       </div>
+      <div className="container3">
       <div className="answer">
         <input
           type="text"
@@ -61,8 +80,19 @@ function App() {
       <div className="congratulations">
         <p>{congratulations}</p>
       </div>
+      <p>Correct: {correctCount}</p>
+      <p>Incorrect: {incorrectCount}</p>
+      <p>Percentage: {percentage.toFixed(2)}%</p>
       <button onClick={fetchRandomQuestion}>Get Random Question</button>
+      <div className="icon">
+        <FontAwesomeIcon icon={faCoffee} />
+      </div>
+      </div>
     </div>
+    </div>
+    </div>
+    
+    
   );
 }
 

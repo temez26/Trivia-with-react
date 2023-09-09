@@ -2,7 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
 import { faDiamond } from "@fortawesome/free-solid-svg-icons";
+
+import Background from './background.jsx'
+
 import React, { useState } from 'react';
+
 
 function App() {
   const [question, setQuestion] = useState('');
@@ -12,6 +16,10 @@ function App() {
   const [congratulations, setCongratulations] = useState('');
   const [correctCount, setCorrectCount] = useState(0); // Track correct answers
   const [incorrectCount, setIncorrectCount] = useState(0); // Track incorrect answers
+
+
+
+  
 
   const fetchRandomQuestion = async () => {
     try {
@@ -53,12 +61,17 @@ function App() {
 
   return (
 
+  
     
-      
-    <div className="App">
+    <div className="App" >
+    
     <div className="container1">
+    
     <div className="container2">
     
+    
+    
+          
       <h1>Random Trivia Question</h1>
       <div className="question">
         {/* Use dangerouslySetInnerHTML to parse HTML entities */}

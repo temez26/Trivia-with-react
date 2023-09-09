@@ -1,5 +1,3 @@
-//not implemented yet
-
 import React, { useState, useEffect } from 'react';
 
 function App() {

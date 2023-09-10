@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
-import { faDiamond,faWandMagicSparkles,faXmark,faCheck } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from 'react';
+import { faDiamond, faWandMagicSparkles, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from 'react';
+import he from 'he'; // Import the 'he' library for HTML entity decoding
 
 function App() {
     const [question, setQuestion] = useState('');
@@ -13,12 +14,16 @@ function App() {
     const [correctCount, setCorrectCount] = useState(0); // Track correct answers
     const [incorrectCount, setIncorrectCount] = useState(0); // Track incorrect answers
 
+    const decodeHtmlEntities = (html) => {
+        return he.decode(html);
+    };
+
     const fetchRandomQuestion = async () => {
         try {
             const response = await fetch('https://opentdb.com/api.php?amount=1');
             const data = await response.json();
-            const randomQuestion = data.results[0].question;
-            const correctAnswer = data.results[0].correct_answer;
+            const randomQuestion = decodeHtmlEntities(data.results[0].question); // Decode HTML entities
+            const correctAnswer = decodeHtmlEntities(data.results[0].correct_answer); // Decode HTML entities
             setQuestion(randomQuestion);
             setAnswer('');
             setCorrectAnswer(correctAnswer);
@@ -49,17 +54,14 @@ function App() {
     const totalQuestions = correctCount + incorrectCount;
     const percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
 
-
+    useEffect(() => {
+        fetchRandomQuestion();
+    }, []); // Fetch a random question on initial load
 
     return (
-
-
-
         <div className="App">
-        
             <div className="container1">
                 <div className="container2">
-
                     <h1> <FontAwesomeIcon icon={faWandMagicSparkles} /> Random Trivia Question</h1>
                     <div className="question">
                         {/* Use dangerouslySetInnerHTML to parse HTML entities */}
@@ -67,16 +69,12 @@ function App() {
                     </div>
                     <div className="container3">
                         <div className="answer">
-                        
-                            
                             <input
-
                                 type="text"
                                 placeholder="Type your answer"
                                 value={answer}
                                 onChange={handleAnswerChange}
                             />
-                            
                             <button onClick={checkAnswer}> <FontAwesomeIcon icon={faDiamond} className="dice" />Check Answer <FontAwesomeIcon icon={faDiamond} className="dice" /></button>
                         </div>
                         {showCorrectAnswer && (
@@ -87,13 +85,10 @@ function App() {
                         <div className="congratulations">
                             <p>{congratulations}</p>
                         </div>
-                        <p>Correct: {correctCount}  <FontAwesomeIcon icon={faCheck}  style={{ color: "#00a803", }}  /></p>
-                        <p>  Incorrect: {incorrectCount}         <FontAwesomeIcon icon={faXmark} style={{color: "#cc0000",}} /></p>
+                        <p>Correct: {correctCount}  <FontAwesomeIcon icon={faCheck} style={{ color: "#00a803", }} /></p>
+                        <p>  Incorrect: {incorrectCount}         <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000", }} /></p>
                         <p>Percentage: {percentage.toFixed(2)}%</p>
-
-
                         <button onClick={fetchRandomQuestion}> <FontAwesomeIcon icon={faDiceSix} className="dice" beat />Get Random Question</button>
-
                         <div className="icon">
                             <FontAwesomeIcon icon={faCoffee} />
                         </div>
@@ -101,8 +96,6 @@ function App() {
                 </div>
             </div>
         </div>
-
-        
     );
 }
 

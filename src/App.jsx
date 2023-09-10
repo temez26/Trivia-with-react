@@ -56,7 +56,7 @@ function App() {
 
 
         <div className="App">
-        <h1 className="welcome"></h1>
+        
             <div className="container1">
                 <div className="container2">
 

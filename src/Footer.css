@@ -1,0 +1,33 @@
+.footer {
+    border-top: 1px solid #fff;
+    color: #fff; /* Set the text color to contrast with the background */
+    padding: 20px 0; /* Add padding to the top and bottom for spacing */
+  }
+
+.social-icons {
+    margin-top: 20px; /* Add margin to the top of the social icons */
+    display: flex;
+    justify-content: center;
+    
+   
+  }
+  
+  .icon {
+    font-size: 24px; /* Adjust the icon size as needed */
+    margin-right: 10px; /* Add margin to the right of each icon */
+    color:rgb(252, 189, 54);
+    
+  }
+  
+ .linked {
+    
+    font-size: 30px; /* Adjust the icon size as needed */
+  margin-right: 10px; 
+
+ }
+.github {
+    color: white;
+    font-size: 30px; /* Adjust the icon size as needed */
+  margin-right: 10px; 
+}
+

@@ -20,12 +20,17 @@ Welcome to the Random Trivia Game! This simple web application fetches random tr
 1. Clone this repository to your local machine:
   -Clone the repository
   -Navigate to project directory
-  -Npm install
+  -Npm i
   -Npm run dev  
  
 ## Enjoy playing the Random Trivia Game!
 
 [Link to My Website](https://triv.azurewebsites.net/)
+
+## Features to add
+- instead that app tells user by text what is correct it should rather tell the user by color what was right and what was right
+  example if user presser wrong answer then the button lights up red and the right lights up green.
+
 
 ### Bugs
 -When pressing check answer button before asking any question the game gives points for correct answers. fixed

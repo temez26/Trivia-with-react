@@ -62,9 +62,15 @@
  .correct-answer {
      font-size:17px;
  }
- .wrong {
-     font-size:20px;
- }
+ .correct {
+    background-color: #00a803;
+    
+}
+
+.wrong {
+    background-color: #cc0000;
+   
+}
 
 @media (max-width: 1200px) {
 

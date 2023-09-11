@@ -1,19 +1,21 @@
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
-import { faDiamond, faWandMagicSparkles, faXmark, faCheck, faChevronRight,faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faDiamond, faWandMagicSparkles, faXmark, faCheck, faChevronRight, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from 'react';
-import he from 'he'; // Import the 'he' library for HTML entity decoding
+import he from 'he';
 
 function App() {
     const [question, setQuestion] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
     const [congratulations, setCongratulations] = useState('');
-    const [correctCount, setCorrectCount] = useState(0); // Track correct answers
-    const [incorrectCount, setIncorrectCount] = useState(0); // Track incorrect answers
+    const [correctCount, setCorrectCount] = useState(0);
+    const [incorrectCount, setIncorrectCount] = useState(0);
     const [options, setOptions] = useState([]);
     const [answered, setAnswered] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
 
     const decodeHtmlEntities = (html) => {
         return he.decode(html);
@@ -21,14 +23,15 @@ function App() {
 
     const fetchRandomQuestion = async () => {
         try {
-            setAnswered(false); // Reset answered state
+            setAnswered(false);
+            setSelectedOption(null);
             const response = await fetch('https://opentdb.com/api.php?amount=1&type=multiple');
             const data = await response.json();
             const randomQuestion = decodeHtmlEntities(data.results[0].question);
             const correctAnswer = decodeHtmlEntities(data.results[0].correct_answer);
             const incorrectAnswers = data.results[0].incorrect_answers.map(decodeHtmlEntities);
             const options = [correctAnswer, ...incorrectAnswers];
-            options.sort(() => Math.random() - 0.5); // Shuffle the options
+            options.sort(() => Math.random() - 0.5);
             setQuestion(randomQuestion);
             setCorrectAnswer(correctAnswer);
             setOptions(options);
@@ -41,6 +44,7 @@ function App() {
 
     const checkAnswer = (selectedOption) => {
         if (!answered) {
+            setSelectedOption(selectedOption);
             if (selectedOption.toLowerCase() === correctAnswer.toLowerCase()) {
                 setCongratulations('Congratulations, correct answer !!!');
                 setShowCorrectAnswer(false);
@@ -50,23 +54,32 @@ function App() {
                 setCongratulations('');
                 setIncorrectCount(incorrectCount + 1);
             }
-            setAnswered(true); // Set answered to true after the user answers
+            setAnswered(true);
         }
     };
+    const getButtonColor = (option) => {
+        if (answered && option.toLowerCase() === correctAnswer.toLowerCase()) {
+            return 'correct';
+        } else if (answered && option === selectedOption) {
+            return 'wrong';
+        }
+        return '';
+    };
+
 
     const resetGame = () => {
         setCorrectCount(0);
         setIncorrectCount(0);
-        fetchRandomQuestion(); // Start a new game by fetching the first question
+        fetchRandomQuestion();
     };
 
     const nextQuestion = () => {
-        fetchRandomQuestion(); // Load the next question
+        fetchRandomQuestion();
     };
 
     useEffect(() => {
         fetchRandomQuestion();
-    }, []); // Fetch a random question on initial load
+    }, []);
 
     return (
         <div className="App">
@@ -74,7 +87,6 @@ function App() {
                 <div className="container2">
                     <h1> <FontAwesomeIcon icon={faWandMagicSparkles} /> Random Trivia Question</h1>
                     <div className="question">
-                        {/* Use dangerouslySetInnerHTML to parse HTML entities */}
                         <p dangerouslySetInnerHTML={{ __html: question }}></p>
                     </div>
                     <div className="container3">
@@ -84,28 +96,27 @@ function App() {
                                     key={index}
                                     onClick={() => checkAnswer(option)}
                                     disabled={answered}
+                                    className={`option-button ${getButtonColor(option)}`}
                                 >
                                     {option}
                                 </button>
                             ))}
+
                         </div>
-                        <div className="answer"></div>
-                        {showCorrectAnswer && (
-                            <div className="correct-answer">
-                                <p className="wrong">Wrong <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000", }} /> </p> <p className="correct">Correct Answer: {correctAnswer} <FontAwesomeIcon icon={faSquareCheck} style={{ color: "#00a803", }} beatFade /> </p>
-                            </div>
-                        )}
+                        <div className="correct-answer">
+                            
+                        </div>
                         <div className="congratulations">
-                            <p>{congratulations} </p>
+                            <p>{congratulations}</p>
                         </div>
                         <div className="points">
-                        <p>Correct: {correctCount}  <FontAwesomeIcon icon={faCheck} style={{ color: "#00a803", }} /></p>
-                        <p>  Incorrect: {incorrectCount}         <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000", }} /></p>
-                    </div>
-                        <div className="next">
-                        <button onClick={nextQuestion}>Next Question <FontAwesomeIcon icon={faChevronRight} bounce /></button>
+                            <p>Correct: {correctCount} <FontAwesomeIcon icon={faCheck} style={{ color: "#00a803" }} /></p>
+                            <p>Incorrect: {incorrectCount} <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000" }} /></p>
                         </div>
-                        <button className="reset" onClick={resetGame}> <FontAwesomeIcon  icon={faDiceSix} className="dice" beat />Reset Game</button>
+                        <div className="next">
+                            <button onClick={nextQuestion}>Next Question <FontAwesomeIcon icon={faChevronRight} bounce /></button>
+                        </div>
+                        <button className="reset" onClick={resetGame}><FontAwesomeIcon icon={faDiceSix} className="dice" beat />Reset Game</button>
                         <div className="icon">
                             <FontAwesomeIcon icon={faCoffee} />
                         </div>

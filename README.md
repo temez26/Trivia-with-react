@@ -18,10 +18,10 @@ Welcome to the Random Trivia Game! This simple web application fetches random tr
 ## How to Run
 
   Clone this repository to your local machine:
-  - Clone the repository
-  - Navigate to project directory
-  - Npm i
-  - Npm run dev  
+  - Clone the repository.
+  - Navigate to project directory.
+  - Npm i.
+  - Npm run dev.
  
 ## Enjoy playing the Random Trivia Game!
 

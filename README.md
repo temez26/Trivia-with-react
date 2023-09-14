@@ -30,6 +30,9 @@ Welcome to the Random Trivia Game! This simple web application fetches random tr
 ## Features to add
 - instead that app tells user by text what is correct it should rather tell the user by color what was right and what was right
   example if user presser wrong answer then the button lights up red and the right lights up green. Done
+- Add particles background at least for mobile version
+- Add night and day mode to the layout
+    
 
 
 ### Bugs

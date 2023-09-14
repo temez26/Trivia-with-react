@@ -1,0 +1,39 @@
+/* Footer Styles */
+.footer {
+    border-top: 1px solid #fff;
+    color: #fff;
+    padding: 20px 0;
+}
+
+/* Social Icons Styles */
+.social-icons {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Icon Styles */
+.icon {
+    font-size: 24px;
+    margin-right: 10px;
+    color: rgb(252, 189, 54);
+}
+
+/* Linked Icon Styles */
+.linked {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+/* GitHub Icon Styles */
+.github {
+    color: white;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+/* Firm Styles */
+.firm {
+    padding-top: 20px;
+    margin-bottom: 0px;
+}

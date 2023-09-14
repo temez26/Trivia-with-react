@@ -1,6 +1,9 @@
+
+
+
 .circle {
     position:relative;
+    left:500%;
+    bottom:70px;
     width:100px;
-   
-    
 }

@@ -1,14 +1,12 @@
-import Lottie from "lottie-react"
+import Lottie from 'lottie-react'
 import animationData from './assets/lottie.json'
-import './lottie.css'
-function Lotti() {
+import './style/lottie.css'
+function Animation() {
     return (
-        <div className="circle">
+        
         <Lottie animationData={animationData}/>
-        </div >
+       
     )
-
-
 }
 
-export default Lotti
+export default Animation

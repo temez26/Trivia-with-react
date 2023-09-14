@@ -1,9 +1,14 @@
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
-import { faDiamond, faWandMagicSparkles, faXmark, faCheck, faChevronRight, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCoffee,
+    faDiceSix,
+    faWandMagicSparkles,
+    faXmark,
+    faCheck,
+    faChevronRight,
+    faSquareCheck
+} from "@fortawesome/free-solid-svg-icons";
 import he from 'he';
 
 function App() {
@@ -57,6 +62,7 @@ function App() {
             setAnswered(true);
         }
     };
+
     const getButtonColor = (option) => {
         if (answered && option.toLowerCase() === correctAnswer.toLowerCase()) {
             return 'correct';
@@ -65,7 +71,6 @@ function App() {
         }
         return '';
     };
-
 
     const resetGame = () => {
         setCorrectCount(0);
@@ -85,7 +90,9 @@ function App() {
         <div className="App">
             <div className="container1">
                 <div className="container2">
-                    <h1> <FontAwesomeIcon icon={faWandMagicSparkles} /> Random Trivia Question</h1>
+                    <h1>
+                        <FontAwesomeIcon icon={faWandMagicSparkles} /> Random Trivia Question
+                    </h1>
                     <div className="question">
                         <p dangerouslySetInnerHTML={{ __html: question }}></p>
                     </div>
@@ -101,22 +108,30 @@ function App() {
                                     {option}
                                 </button>
                             ))}
-
                         </div>
-                        <div className="correct-answer">
-                            
-                        </div>
+                        <div className="correct-answer"></div>
                         <div className="congratulations">
                             <p>{congratulations}</p>
                         </div>
                         <div className="points">
-                            <p>Correct: {correctCount} <FontAwesomeIcon icon={faCheck} style={{ color: "#00a803" }} /></p>
-                            <p>Incorrect: {incorrectCount} <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000" }} /></p>
+                            <p>
+                                Correct: {correctCount}{' '}
+                                <FontAwesomeIcon icon={faCheck} style={{ color: "#00a803" }} />
+                            </p>
+                            <p>
+                                Incorrect: {incorrectCount}{' '}
+                                <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000" }} />
+                            </p>
                         </div>
                         <div className="next">
-                            <button onClick={nextQuestion}>Next Question <FontAwesomeIcon icon={faChevronRight} bounce /></button>
+                            <button onClick={nextQuestion}>
+                                Next Question{' '}
+                                <FontAwesomeIcon icon={faChevronRight} bounce />
+                            </button>
                         </div>
-                        <button className="reset" onClick={resetGame}><FontAwesomeIcon icon={faDiceSix} className="dice" beat />Reset Game</button>
+                        <button className="reset" onClick={resetGame}>
+                            <FontAwesomeIcon icon={faDiceSix} className="dice" beat />Reset Game
+                        </button>
                         <div className="icon">
                             <FontAwesomeIcon icon={faCoffee} />
                         </div>

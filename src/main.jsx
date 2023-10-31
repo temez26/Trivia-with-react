@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import Footer from './Footer.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.min.js'; // Import Bootstrap JavaScript
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/js/bootstrap.min.js';
 import Animation from './Lottie.jsx';
 import Nav from './Navbar.jsx';
 import './style/App.css';

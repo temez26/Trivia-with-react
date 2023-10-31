@@ -34,7 +34,7 @@
     padding: 30px;
 }
 
-/* Question Styles */
+
 .question {
     padding: 10px;
     font-size: 20px;
@@ -43,7 +43,7 @@
     margin-top: 30px;
 }
 
-/* Button Styles */
+
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -69,7 +69,7 @@ button {
         
     }
 
-/* Correct and Wrong Answer Styles */
+
 .correct-answer {
     font-size: 17px;
 }

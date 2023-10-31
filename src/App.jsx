@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import he from 'he';
 
+// Define the main App component
 function App() {
+    // Define necessary states for the component
     const [question, setQuestion] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
@@ -22,10 +25,12 @@ function App() {
     const [answered, setAnswered] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
 
+    // Function to decode HTML entities
     const decodeHtmlEntities = (html) => {
         return he.decode(html);
     };
 
+    // Fetch a random question from the API
     const fetchRandomQuestion = async () => {
         try {
             setAnswered(false);
@@ -47,6 +52,7 @@ function App() {
         }
     };
 
+    // Check the selected answer and update states accordingly
     const checkAnswer = (selectedOption) => {
         if (!answered) {
             setSelectedOption(selectedOption);
@@ -63,6 +69,7 @@ function App() {
         }
     };
 
+    // Function to get the button color based on the correctness of the answer
     const getButtonColor = (option) => {
         if (answered && option.toLowerCase() === correctAnswer.toLowerCase()) {
             return 'correct';
@@ -72,30 +79,38 @@ function App() {
         return '';
     };
 
+    // Reset the game to initial state
     const resetGame = () => {
         setCorrectCount(0);
         setIncorrectCount(0);
         fetchRandomQuestion();
     };
 
+    // Fetch the next random question
     const nextQuestion = () => {
         fetchRandomQuestion();
     };
 
+    // Fetch a random question when the component mounts
     useEffect(() => {
         fetchRandomQuestion();
     }, []);
 
+   
     return (
         <div className="App">
+            {/* Main container for the app */}
             <div className="container1">
                 <div className="container2">
+                    {/* Title section with magic wand icon */}
                     <h1>
                         <FontAwesomeIcon icon={faWandMagicSparkles} /> Random Trivia Question
                     </h1>
+                    {/* Display the current question */}
                     <div className="question">
                         <p dangerouslySetInnerHTML={{ __html: question }}></p>
                     </div>
+                    {/* Display answer options */}
                     <div className="container3">
                         <div className="options">
                             {options.map((option, index) => (
@@ -109,10 +124,13 @@ function App() {
                                 </button>
                             ))}
                         </div>
+                        {/* Display the correct answer */}
                         <div className="correct-answer"></div>
+                        {/* Display congratulatory message */}
                         <div className="congratulations">
                             <p>{congratulations}</p>
                         </div>
+                        {/* Display correct and incorrect answer counts */}
                         <div className="points">
                             <p>
                                 Correct: {correctCount}{' '}
@@ -123,15 +141,18 @@ function App() {
                                 <FontAwesomeIcon icon={faXmark} style={{ color: "#cc0000" }} />
                             </p>
                         </div>
+                        {/* Button to fetch the next question */}
                         <div className="next">
                             <button onClick={nextQuestion}>
                                 Next Question{' '}
                                 <FontAwesomeIcon icon={faChevronRight} bounce />
                             </button>
                         </div>
+                        {/* Button to reset the game */}
                         <button className="reset" onClick={resetGame}>
                             <FontAwesomeIcon icon={faDiceSix} className="dice" beat />Reset Game
                         </button>
+                        {/* Display a coffee icon */}
                         <div className="icon">
                             <FontAwesomeIcon icon={faCoffee} />
                         </div>
@@ -141,5 +162,6 @@ function App() {
         </div>
     );
 }
+
 
 export default App;
